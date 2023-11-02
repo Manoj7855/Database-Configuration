@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+</head>
+<body>
+    <h3 class="text-info">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %}
+                <div class="alert alert-{{category}}" style="color: rgb(226, 13, 59); 
+                font-size: 20px;"><h3>{{message}}</h3></div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+</h3> 
+    <h1>User Details</h1> 
+    <p>ID: {{ user.ID }}</p>
+    <p>Name: {{ user.NAME }}</p>
+    <p>Age: {{ user.AGE }}</p>
+    <p>City: {{ user.CITY }}</p>
+    <p>Mobile: {{ user.Mobile }}</p>
+    <p>Email: {{ user.email }}</p>
+
+    <a href="{{ url_for('home') }}">Back to Homepage</a>
+    <a href="{{url_for('logout')}}"><input type="button" value="LOGOUT" class="btn btn-primary"></a>
+</body>
+</html>

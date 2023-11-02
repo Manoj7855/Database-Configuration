@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="" method="post">
+        <h1>Update User Details</h1>
+        <h3 class="text-info">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category,message in messages %}
+                    <div class="alert alert-{{category}}" style="color: rgb(226, 13, 59); 
+                    font-size: 20px;"><h3>{{message}}</h3></div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </h3>
+        <label>NAME:</label>
+        <input type="text" name="name" value="{{datas.NAME}}"  required>
+        <label>AGE</label>
+        <input type="text" name="age" value="{{datas.AGE}}" required>
+        <label>CITY</label>
+        <input type="text" name="city" value="{{datas.CITY}}" required>
+        <label>MOBILE</label>
+        <input type="text" name="mobile" value="{{datas.Mobile}}" required>
+        <label>EMAIL</label>
+        <input type="text" name="email" value="{{datas.email}}" required><br><br>
+        <input style="margin-left: 1000px;" type="submit" value="Update Details">
+        <a href="{{url_for('home')}}"><input type="button" value="Back to Home Page"></a>
+    </form>
+</body>
+</html>

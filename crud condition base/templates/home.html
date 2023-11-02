@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='bootstrap/bootstrap.min.css')}}">
+</head>
+<body style="text-align: center;">
+    <h1>User Managment Using Python Flask & MySQL</h1>
+        <h3 class="text-info">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category,message in messages %}
+                        <div class="alert alert-{{category}}" style="color: rgb(226, 13, 59); 
+                        font-size: 20px;"><h3>{{message}}</h3></div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+        </h3>
+    <p><a href="{{url_for('addusers')}}">Add Users</a></p>
+    <p style="margin-left: -1000px;"><a href="{{url_for('login')}}">Login</a></p>
+
+    <table class="col-md-10 table-bordered"; style="margin-left:100px;">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>CITY</th>
+            <th>Mobile</th>
+            <th>email</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+        </tr>
+        {% for data in datas %}
+             <tr>
+                <td>{{data.ID}}</td> 
+                <td>{{data.NAME}}</td> 
+                <td>{{data.AGE}}</td> 
+                <td>{{data.CITY}}</td> 
+                <td>{{data.Mobile}}</td>
+                <td>{{data.email}}</td>
+                <td><a href="{{url_for('editUser',id=data.ID)}}" class="btn btn-success">Edit</a></td>
+                <td><a onclick="return confirm('Are you sure to delete?');" href=
+                    "{{url_for('deleteUser',id=data.ID)}}" class="btn btn-danger">Delete</a></td>
+                
+             </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
