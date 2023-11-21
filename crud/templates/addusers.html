@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crud</title>
+</head>
+<body>
+    <h1>Add New User Details</h1>
+    <h3 class="text-info">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %}
+                <div class="alert alert-{{category}}" style="color: rgb(226, 13, 59); 
+                font-size: 20px;"><h3>{{message}}</h3></div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </h3>
+    <form action='/addusers' method='POST'>
+        <label>Name:</label>
+        <input type="text" name="name" required>
+        <label>Age:</label>
+        <input type="text" name="age" required>
+        <label>City:</label>
+        <input type="text" name="city" required>
+        <input type="submit" Value="Save Details">
+</body>
+</html>
