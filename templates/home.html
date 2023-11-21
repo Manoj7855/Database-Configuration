@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+<div class="container-fluid" style="margin-top: -10px;">
+    <div class="col-md-offset-3 col-md-6">
+        <h3 class="page-header text-primary text-center"><i class="fa fa-database">Django-MySQL</i></h3>
+        
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% else %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}    
+
+        
+    </div>
+
+</div>
+<div class="col-md-5 pull-right">
+    <table class="table">
+        <tr>
+            <th><input type="text" name="search" id="search" placeholder="Search" class="form-control"></th>
+            <th><a href="insert/" class="btn btn-success btn-block">Insert</a></th>
+        </tr>
+
+    </table>
+</div>
+<div class="container">
+<table class="table table-bordered" id="mytable">
+    <tr>
+    <th>S.No</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Address</th>
+    <th>Contact</th>
+    <th>Email</th>
+    <th>Update</th>
+    <th>Delete</th>
+    </tr>
+
+    {% for mydata in datas %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{mydata.name}}</td>
+        <td>{{mydata.age}}</td>
+        <td>{{mydata.address}}</td>
+        <td>{{mydata.contact}}</td>
+        <td>{{mydata.email}}</td>
+        <td><a href="update/{{mydata.id}}"><input type="button" value="Update" class="text-center btn-primary" ></a></td>
+        <td><a href="delete/{{mydata.id}}"><input type="button" value="Delete" class="btn btn-danger"></a></td>
+    </tr>
+    
+    {% endfor %}
+</table>
+</div>
+<script>
+    $("document").ready(function(){
+        $('#search').keyup(function(){
+            var value=$(this).val().toLowerCase()
+            $("#mytable tr").filter(function(){
+                $(this).toggle($(this).text().toLowerCase().indexOf(value)>-1);
+
+            });
+            
+        });
+    });
+</script>
+
+{% endblock %}
+
